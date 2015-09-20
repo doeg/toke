@@ -4,16 +4,34 @@
   "description": "mad libs for bots",
   "main": "toke.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/mocha"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/doeg/toke.git"
+    "url": "git://github.com/doeg/toke.git"
   },
+  "keywords": [
+    "mad",
+    "libs",
+    "linguistics",
+    "twitter",
+    "bots"
+  ],
   "author": "@doeg",
   "license": "GPLv2",
   "bugs": {
     "url": "https://github.com/doeg/toke/issues"
   },
-  "homepage": "https://github.com/doeg/toke"
+  "devDependencies": {
+    "babel": "^5.8.23",
+    "growl": "^1.8.1",
+    "grunt": "~0.4.5",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-mocha-test": "^0.12.7",
+    "mocha": "~2.3.2"
+  },
+  "dependencies": {
+    "chai": "~3.2.0",
+    "lodash": "^3.10.1"
+  }
 }
