@@ -4,7 +4,7 @@
  *
  */
 export default class {
-  constructor(props) {
-    console.log(props);
+  constructor(word) {
+    console.log(word);
   }
 }

@@ -1,6 +1,7 @@
 "use strict";
 
 import { expect } from "chai";
+import Token from "../../src/token";
 import Tokenizer from "../../src/tokenizer";
 
 describe("tokenizer", () => {
@@ -28,6 +29,15 @@ describe("tokenizer", () => {
       let tokenizer = new Tokenizer("");
       var result = tokenizer.tokenize();
       expect(result).to.eql([]);
+    });
+
+    it("returns an array of tokens", () => {
+      let tokenizer = new Tokenizer("foo bar");
+      let result = tokenizer.tokenize();
+      expect(result).to.eql([
+        new Token("foo"),
+        new Token("bar"),
+      ]);
     });
   });
 

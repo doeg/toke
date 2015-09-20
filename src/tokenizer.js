@@ -19,7 +19,18 @@ export default class {
     } else throw new Error("template must be a string");
   }
 
+  /**
+   * Tokenizes the template string into an array of tokens.
+   *
+   * @returns {[Token]}
+   */
   tokenize() {
-    return [];
+
+    if (!this.template) return [];
+
+    var words = this.template.split(/\s+/);
+    return words.map(word => {
+      return new Token(word);
+    });
   }
 }
