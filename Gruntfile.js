@@ -52,7 +52,9 @@ module.exports = function(grunt) {
 
   grunt.registerTask('build', ['babel']);
 
-  grunt.registerTask('go', ['build'], function() {
+  grunt.registerTask('go', 'generate randoms', ['build', 'random']);
+
+  grunt.registerTask('random', 'generate randoms', function() {
     var n = 5;
     var toke = require("./build/src/toke");
     for (var i = 0; i < n; i++) {
