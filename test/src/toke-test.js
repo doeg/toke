@@ -1,6 +1,6 @@
 var assert = require("assert");
 var expect = require("chai").expect;
-var toke = require("../toke");
+var toke = require("../../src/toke");
 
 describe("toke", () => {
   it("returns a string", () => {

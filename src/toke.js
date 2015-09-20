@@ -1,6 +1,6 @@
-import grammar from "./lib/grammar";
-import LEX from "./lib/lexicon";
-import tokenize from "./src/tokenize";
+import grammar from "../lib/grammar";
+import LEX from "../lib/lexicon";
+import tokenize from "./tokenize";
 
 const LIMIT = 3;
 

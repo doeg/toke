@@ -3,8 +3,24 @@ module.exports = function(grunt) {
   // Load tasks
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-mocha-test');
+  grunt.loadNpmTasks('grunt-babel');
 
   grunt.initConfig({
+
+    babel: {
+      options: {
+        sourceMap: true,
+        experimental: true
+      },
+
+      dist: {
+        files: [{
+          src: ["lib/**/*.js", "src/**/*.js"],
+          dest: "./build/",
+          expand: true
+        }]
+      }
+    },
 
     mochaTest: {
       test: {
@@ -30,12 +46,15 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('default', 'test');
+  grunt.registerTask('default', 'watch');
+
   grunt.registerTask('test', ['mochaTest']);
 
-  grunt.registerTask('go', 'Run mktxt n times', function() {
+  grunt.registerTask('build', ['babel']);
+
+  grunt.registerTask('go', ['build'], function() {
     var n = 5;
-    var toke = require("./toke");
+    var toke = require("./build/src/toke");
     for (var i = 0; i < n; i++) {
       console.log(toke.mk("{NP} {VP}"));
     }

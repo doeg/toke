@@ -15,9 +15,3 @@
 
 # toke
 mad libs for bots
-
-```javascript
-var toke = new Toke("{NP} {VP}");
-console.log(toke.compile());
-// "colourless green ideas sleep furiously"
-```
