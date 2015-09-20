@@ -24,7 +24,7 @@ module.exports = function(grunt) {
           interrupt: true,
           debounceDelay: 250,
         },
-        files: ['Gruntfile.js', '*.js', 'lib/**/*.js', 'src/**/*.js', 'test/**/*.js'],
+        files: ['**/*.js', '**/*.json'],
         tasks: ['test', 'go']
       }
     }
