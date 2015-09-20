@@ -1,5 +1,8 @@
 export default class {
   constructor(opts) {
-    console.log(opts);
+    var opts = opts || {};
+    this.lexicon = opts.lexicon || require("./lib/lexicon");
+    this.grammar = opts.grammar || require("./lib/grammar");
+    console.log(this);
   }
 }
