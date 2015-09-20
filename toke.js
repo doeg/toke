@@ -1,4 +1,4 @@
-import POS from "./lib/pos";
+import grammar from "./lib/grammar";
 import LEX from "./lib/lexicon";
 import tokenize from "./src/tokenize";
 
@@ -79,7 +79,7 @@ export function populate(tokens, lexicon) {
 
 export function mk(str, opts) {
   var tokens = tokenize(str).map(t => t.token);
-  var compiled = this.compile(tokens, POS);
+  var compiled = this.compile(tokens, grammar);
   return this.populate(compiled, LEX);
 };
 
