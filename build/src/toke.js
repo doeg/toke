@@ -3,118 +3,67 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.compile = compile;
-exports.compileToken = compileToken;
-exports.populate = populate;
-exports.mk = mk;
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var _libGrammar = require("../lib/grammar");
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj["default"] = obj; return newObj; } }
 
-var _libGrammar2 = _interopRequireDefault(_libGrammar);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var _utils = require("./utils");
+
+var utils = _interopRequireWildcard(_utils);
 
 var _libLexicon = require("../lib/lexicon");
 
 var _libLexicon2 = _interopRequireDefault(_libLexicon);
 
-var _tokenize = require("./tokenize");
+var _libGrammar = require("../lib/grammar");
 
-var _tokenize2 = _interopRequireDefault(_tokenize);
-
-var LIMIT = 3;
+var _libGrammar2 = _interopRequireDefault(_libGrammar);
 
 /**
- * Compiles the string down to its base tokens.
+ *
  */
 
-function compile(tokens, pos, i) {
-  var _this = this;
+var _default = (function () {
 
-  var i = i || 0;
-  var compiled = [];
-  var isDone = true;
+  /**
+   * Instantiates a new Toke object.
+   */
 
-  tokens.forEach(function (token) {
+  function _default(opts) {
+    _classCallCheck(this, _default);
 
-    var constituent = _this.compileToken(token, pos);
+    var opts = opts || {};
+    this.grammar = opts.grammar || _libGrammar2["default"];
+    this.lexicon = opts.lexicon || _libLexicon2["default"];
+  }
 
-    // Terminal tokens get compiled to null, meaning that the token is
-    // its own constituent and needs no further recursion.
-    if (constituent === null) {
-      isDone = isDone && true;
-      compiled.push(token);
+  /**
+   * Compiles the given template string. Example:
+   *
+   *    var sentence = token.mk("{NP} {VP}");
+   *
+   */
+
+  _createClass(_default, [{
+    key: "mk",
+    value: function mk(str) {
+      return utils.mk(str, this.grammar, this.lexicon);
     }
-
-    // Otherwise, if the token is not terminal, push its compiled constituents
-    // onto the final phrase grammar and indicate that at least one more
-    // recursive step is needed
-    else {
-        isDone = isDone && false;
-        compiled = compiled.concat(constituent);
-      }
-  });
-
-  return isDone ? compiled : this.compile(compiled, pos, i++);
-}
-
-;
-
-/**
- * For a single token ("NP"), returns a randomly-chosen constituent phrase
- * (["Det", "N"]), as given by the rules in pos. If the token is already
- * terminal, null is returned.
- */
-
-function compileToken(token, pos) {
-
-  if (!(token in pos)) {
-    throw new Error("invalid token: " + token);
-  }
-
-  var constituents = pos[token];
-
-  if (constituents === null) {
-    return null;
-  } else {
-    var sub = constituents[Math.floor(Math.random() * constituents.length)];
-    if (!Array.isArray(sub)) sub = [sub];
-    return sub;
-  }
-}
-
-;
-
-/**
- * Populates an array of base tokens with actual words.
- * TODO: this can probably be combined with compile() for simplicity.
- */
-
-function populate(tokens, lexicon) {
-  var str = [];
-  for (var i = 0; i < tokens.length; i++) {
-
-    var token = tokens[i];
-    if (!(token in lexicon)) {
-      throw new Error("token '" + token + "' not known in lexicon");
+  }, {
+    key: "compileToken",
+    value: function compileToken(token, pos) {
+      return utils.compileToken(token, pos);
     }
+  }]);
 
-    var words = lexicon[token];
-    var word = words[Math.floor(Math.random() * words.length)];
-    str.push(word);
-  }
-  return str.join(" ");
-}
+  return _default;
+})();
 
-;
-
-function mk(str, opts) {
-  var tokens = (0, _tokenize2["default"])(str).map(function (t) {
-    return t.token;
-  });
-  var compiled = this.compile(tokens, _libGrammar2["default"]);
-  return this.populate(compiled, _libLexicon2["default"]);
-}
-
-;
+exports["default"] = _default;
+module.exports = exports["default"];
 //# sourceMappingURL=toke.js.map

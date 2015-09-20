@@ -56,7 +56,9 @@ module.exports = function(grunt) {
 
   grunt.registerTask('random', 'generate randoms', function() {
     var n = 5;
-    var toke = require("./build/src/toke");
+    var Toke = require("./build/src/toke");
+
+    var toke = new Toke();
     for (var i = 0; i < n; i++) {
       console.log(toke.mk("{NP} {VP}"));
     }
