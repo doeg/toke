@@ -1,0 +1,19 @@
+{
+  "name": "toke",
+  "version": "0.0.0",
+  "description": "mad libs for bots",
+  "main": "toke.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/doeg/toke.git"
+  },
+  "author": "@doeg",
+  "license": "GPLv2",
+  "bugs": {
+    "url": "https://github.com/doeg/toke/issues"
+  },
+  "homepage": "https://github.com/doeg/toke"
+}
