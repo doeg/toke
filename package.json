@@ -1,6 +1,6 @@
 {
   "name": "toke",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "mad libs for bots",
   "main": "build/src/toke.js",
   "scripts": {
