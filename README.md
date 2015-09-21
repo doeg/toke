@@ -13,8 +13,10 @@
 ```
 
 
-# toke
-A DSL for phrase grammar, more usefully referred to as "mad libs for twitter bots".
+# ☁ toke ☁
+
+
+A (_very_ experimental) DSL for phrase grammar, more usefully referred to as "mad libs for twitter bots".
 
 ```
 import toke from "toke";
